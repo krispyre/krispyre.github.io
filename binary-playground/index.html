@@ -12,11 +12,10 @@
     </head>
 
     <body>
-        <h1>The B1nary Playgr0und</h1>
-        <hr>
+        <h1 class="title">The B1nary Playgr0und</h1>
         
         <div id="length-menu" class="menu"><!--WIP-->
-            (add togle switch?)
+            <input type="checkbox" id="sign">Signed? (WIP)</input>
             <button type="button" class="menu-item" id="4bit">4 bits</button>
             <button type="button" class="menu-item" id="8bit">8 bits</button>
             <button type="button" class="menu-item" id="16bit">16 bits</button>
@@ -35,10 +34,23 @@
         <div id="setters" class="menu">
             <button type="button" id="set-off" class="menu-item bit-changer">Clear all</button>
             <button type="button" id="set-on" class="menu-item bit-changer">Set all</button>
+            <button type="button" id="bit-negate" class="menu-item bit-changer">Negate</button>
+            <br>
+            <button type="button" id="bitshift-left" class="menu-item bit-changer wip"><</button>
+            <button type="button" id="bitshift-right" class="menu-item bit-changer wip">></button>
+            <button type="button" id="increment" class="menu-item bit-changer wip">++</button>
+            <button type="button" id="decrement" class="menu-item bit-changer wip">--</button>
+            <button type="button" id="bitwise-and" class="menu-item bit-changer wip">and</button>
+            <button type="button" id="bitwise-or" class="menu-item bit-changer wip">or</button>
+
+        </div>
+
+        <div id="oper">
+
         </div>
 
         <a href="../index.html">Go back</a>
-        <a href="index-zh.html">中</a>
+        <!--<a href="index-zh.html">中</a>-->
         <div id="help">?</div>
     </body>
 </html>
