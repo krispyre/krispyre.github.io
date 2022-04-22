@@ -13,24 +13,32 @@
 
     <body>
         <h1>The B1nary Playgr0und</h1>
-        <div id="help">?</div>
+        <hr>
         
         <div id="length-menu" class="menu"><!--WIP-->
-            (add togle sswitch?)
-            <button type="button" class="menu-item" id="4bit" autofocus>4 bits</button>
+            (add togle switch?)
+            <button type="button" class="menu-item" id="4bit">4 bits</button>
             <button type="button" class="menu-item" id="8bit">8 bits</button>
+            <button type="button" class="menu-item" id="16bit">16 bits</button>
             <button type="button" class="menu-item" id="32bit">32 bits</button>
+            <div id="dec-display">Decimal value: 0</div>
+        </div>
 
-        </div>
         <div id="bit-container"> <!--Automate this by js bruh-->
-            <div class="bits" id="bit0">0</div>
-            <div class="bits" id="bit1">0</div>
-            <div class="bits" id="bit2">0</div>
-            <div class="bits" id="bit3">0</div>
+            <div class="bits zero bit-changer" id="bit0">0</div>
+            <div class="bits zero bit-changer" id="bit1">0</div>
+            <div class="bits zero bit-changer" id="bit2">0</div>
+            <div class="bits zero bit-changer" id="bit3">0</div>
+            
         </div>
+
         <div id="setters" class="menu">
-            <button type="button" class="menu-item">Clear all</button>
-            <button type="button" class="menu-item">Set all</button>
+            <button type="button" id="set-off" class="menu-item bit-changer">Clear all</button>
+            <button type="button" id="set-on" class="menu-item bit-changer">Set all</button>
         </div>
+
+        <a href="../index.html">Go back</a>
+        <a href="index-zh.html">中</a>
+        <div id="help">?</div>
     </body>
 </html>
