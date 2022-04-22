@@ -1,4 +1,8 @@
+/*title*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap');
+/*Everything else*/
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800;900&display=swap');
+/*Chinese*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap');
 
 html {
@@ -13,6 +17,7 @@ body {
     cursor: help;
 }
 .title {
+    font-family: "Roboto Slab", serif;
     background-color: black;
     margin: 0 0 10px 0;
     padding: 10px;
@@ -32,7 +37,7 @@ body {
     width: 60%;
     margin-inline: auto;
     padding: 15px;
-    border: 2px solid black;
+    border: 5px solid black;
     border-radius: 10px;
 }
 
@@ -45,8 +50,22 @@ body {
     font: inherit;
 
     cursor: pointer;
-    
 }
+
+.menu2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+
+    width: 60%;
+    margin-inline: auto;
+    padding: 15px;
+    background-color: #bebebe;
+    /*border-style: solid none none none;
+    border:5px #2e2e2e;*/
+}
+
 #bit-container {
     display: flex;
     flex-direction: row;
@@ -78,7 +97,7 @@ body {
     background-color: #eeeeee;
 }
 .bits:active {
-    transform: scale(1.01);
+    transform: scale(0.99);
 }
 .zero {
     background-color: black;
@@ -93,7 +112,7 @@ body {
 
 .wip {
     background-color: #6f6f6f;
-    color:#6f6f6f;
+    color:#2e2e2e;
 }
 
 @keyframes tiny-grow {

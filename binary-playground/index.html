@@ -12,9 +12,9 @@
     </head>
 
     <body>
-        <h1 class="title">The B1nary Playgr0und</h1>
+        <h1 class="title">The B1nary Playgr0und.</h1>
         
-        <div id="length-menu" class="menu"><!--WIP-->
+        <div id="lengths" class="menu"><!--WIP-->
             <input type="checkbox" id="sign">Signed? (WIP)</input>
             <button type="button" class="menu-item" id="4bit">4 bits</button>
             <button type="button" class="menu-item" id="8bit">8 bits</button>
@@ -23,7 +23,7 @@
             <div id="dec-display">Decimal value: 0</div>
         </div>
 
-        <div id="bit-container"> <!--Automate this by js bruh-->
+        <div id="bit-container">
             <div class="bits zero bit-changer" id="bit0">0</div>
             <div class="bits zero bit-changer" id="bit1">0</div>
             <div class="bits zero bit-changer" id="bit2">0</div>
@@ -31,11 +31,14 @@
             
         </div>
 
-        <div id="setters" class="menu">
+        <div id="switches" class="menu2">
             <button type="button" id="set-off" class="menu-item bit-changer">Clear all</button>
             <button type="button" id="set-on" class="menu-item bit-changer">Set all</button>
             <button type="button" id="bit-negate" class="menu-item bit-changer">Negate</button>
-            <br>
+            
+        </div>
+
+        <div id="operators" class="menu2">
             <button type="button" id="bitshift-left" class="menu-item bit-changer wip"><</button>
             <button type="button" id="bitshift-right" class="menu-item bit-changer wip">></button>
             <button type="button" id="increment" class="menu-item bit-changer wip">++</button>
@@ -45,12 +48,8 @@
 
         </div>
 
-        <div id="oper">
-
-        </div>
-
         <a href="../index.html">Go back</a>
-        <!--<a href="index-zh.html">中</a>-->
+        <a href="index-zh.html">中</a>
         <div id="help">?</div>
     </body>
 </html>
