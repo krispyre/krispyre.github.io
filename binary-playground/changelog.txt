@@ -1,0 +1,45 @@
+LEGEND
++ added
+- removed
+? wip
+:( bug
+:) solved
+. todo
+-------------------------------------------------------------------
+21/4
++ can convert bits to decimal
+? how to display them
+
+22/4
++ button to set all to 0 or 1
++ set int length 4,8,16,32 
++ .bit-changer class for buttons that change the int's value (asgore blike)
++ negate 
+? keep lower bits (simulate info lost)
+? negate needs to change display
+
+
+23/4
++ cleaned up the code (visuals update all move to the update function)
+:) bit doesnt update after changeing the length
+
+. redesign layout
+. clean up code in update length, the shrink is too weird
+. clean up colors
+. add index indicating power for each digit 
+. different classes for different functions (bitshift, allswitch/neg, logic, +-)
+. get better names bruh
+. add a toggle switch to signed/unsigned int (need code)
+. floats?
+. one extra number for operations
+. + -
+. convert decinal input to binary display
+. and or xor two numbers
+. display in dec and hex
+. help
+. faq
+. introduction
+. bit shifting
+. toggle groups of 4 on/off
+. different update methods for signed/unsigned
+. easters eggs probably
