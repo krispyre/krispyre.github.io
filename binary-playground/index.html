@@ -16,10 +16,10 @@
         
         <div id="lengths" class="menu"><!--WIP-->
             <input type="checkbox" id="sign">Signed? (WIP)</input>
-            <button type="button" class="menu-item" id="4bit">4 bits</button>
-            <button type="button" class="menu-item" id="8bit">8 bits</button>
-            <button type="button" class="menu-item" id="16bit">16 bits</button>
-            <button type="button" class="menu-item" id="32bit">32 bits</button>
+            <button type="button" class="menu-item bit-changer" id="4bit">4 bits</button>
+            <button type="button" class="menu-item bit-changer" id="8bit">8 bits</button>
+            <button type="button" class="menu-item bit-changer" id="16bit">16 bits</button>
+            <button type="button" class="menu-item bit-changer" id="32bit">32 bits</button>
             <div id="dec-display">Decimal value: 0</div>
         </div>
 
@@ -38,14 +38,20 @@
             
         </div>
 
-        <div id="operators" class="menu2">
+        <div id="1operators" class="menu2">
             <button type="button" id="bitshift-left" class="menu-item bit-changer wip"><</button>
             <button type="button" id="bitshift-right" class="menu-item bit-changer wip">></button>
             <button type="button" id="increment" class="menu-item bit-changer wip">++</button>
             <button type="button" id="decrement" class="menu-item bit-changer wip">--</button>
-            <button type="button" id="bitwise-and" class="menu-item bit-changer wip">and</button>
-            <button type="button" id="bitwise-or" class="menu-item bit-changer wip">or</button>
+        </div>
 
+        <div id="2operators" class="menu2">
+
+            <button type="button" id="and" class="menu-item bit-changer wip">and</button>
+            <button type="button" id="or" class="menu-item bit-changer wip">or</button>
+            <button type="button" id="add" class="menu-item bit-changer wip">xor</button>
+            <button type="button" id="subtract" class="menu-item bit-changer wip">+</button>
+            <!--<button type="button" id="bitwise-or" class="menu-item bit-changer wip">-</button>-->
         </div>
 
         <a href="../index.html">Go back</a>
