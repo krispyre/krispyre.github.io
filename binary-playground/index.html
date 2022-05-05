@@ -3,7 +3,7 @@
     <head>
         <title>binary playground</title>
         <meta charset="UTF-8">
-        <meta name="description" content="Play around with bits!">
+        <meta name="description" content="An interactive visualization of binary operations.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="style.css">
@@ -15,19 +15,23 @@
         <h1 class="title">The B1nary Playgr0und.</h1>
         
         <div id="lengths" class="menu"><!--WIP-->
-            <input type="checkbox" id="sign">Signed? (WIP)</input>
-            <button type="button" class="menu-item bit-changer" id="4bit">4 bits</button>
-            <button type="button" class="menu-item bit-changer" id="8bit">8 bits</button>
-            <button type="button" class="menu-item bit-changer" id="16bit">16 bits</button>
-            <button type="button" class="menu-item bit-changer" id="32bit">32 bits</button>
+            <input type="checkbox" class="bit-changer" id="sign-box">
+            <label for="sign-box">Signed?</label>
+            <span>
+                <button type="button" class="menu-item bit-changer" id="4bit">4 bits</button>
+                <button type="button" class="menu-item bit-changer" id="8bit">8 bits</button>
+                <button type="button" class="menu-item bit-changer" id="16bit">16 bits</button>
+                <button type="button" class="menu-item bit-changer" id="32bit">32 bits</button>
+            </span>
+            
             <div id="dec-display">Decimal value: 0</div>
         </div>
 
-        <div id="bit-container">
-            <div class="bits zero bit-changer" id="bit0">0</div>
-            <div class="bits zero bit-changer" id="bit1">0</div>
-            <div class="bits zero bit-changer" id="bit2">0</div>
-            <div class="bits zero bit-changer" id="bit3">0</div>
+        <div id="bit-container-a" class="bit-containers">
+            <div class="bits zero bit-changer " id="bit-a0">0</div>
+            <div class="bits zero bit-changer" id="bit-a1">0</div>
+            <div class="bits zero bit-changer" id="bit-a2">0</div>
+            <div class="bits zero bit-changer" id="bit-a3">0</div>
             
         </div>
 
@@ -39,8 +43,8 @@
         </div>
 
         <div id="1operators" class="menu2">
-            <button type="button" id="bitshift-left" class="menu-item bit-changer wip"><</button>
-            <button type="button" id="bitshift-right" class="menu-item bit-changer wip">></button>
+            <button type="button" id="bitshift-left" class="menu-item bit-changer"><</button>
+            <button type="button" id="bitshift-right" class="menu-item bit-changer">></button>
             <button type="button" id="increment" class="menu-item bit-changer wip">++</button>
             <button type="button" id="decrement" class="menu-item bit-changer wip">--</button>
         </div>
@@ -54,8 +58,12 @@
             <!--<button type="button" id="bitwise-or" class="menu-item bit-changer wip">-</button>-->
         </div>
 
-        <a href="../index.html">Go back</a>
-        <a href="index-zh.html">中</a>
-        <div id="help">?</div>
+        <footer>
+            <a href="../index.html">Go back</a>
+            <a href="index-zh.html">中</a>
+            <a href="https://github.com/kr15w/kr15w.github.io">Source code</a>
+            <span id="help" title="This is the hover help text. You're welcome.">?</span>
+        </footer>
+        
     </body>
 </html>

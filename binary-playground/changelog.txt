@@ -4,7 +4,7 @@ LEGEND
 ? wip
 :( bug
 :) solved
-. todo
+. todo/ideas
 -------------------------------------------------------------------
 21/4
 + can convert bits to decimal
@@ -13,33 +13,55 @@ LEGEND
 22/4
 + button to set all to 0 or 1
 + set int length 4,8,16,32 
-+ .bit-changer class for buttons that change the int's value (asgore blike)
++ .bit-changer class for buttons that change the int's value (asgore moment)
 + negate 
-? keep lower bits (simulate info lost)
-? negate needs to change display
-
++ bit shifting
 
 23/4
 + cleaned up the code (visuals update all move to the update function)
++ keep lower bits (simulate info lost)
++ negate changes display
 :) bit doesnt update after changeing the length
 
+5/5
++ sign calculation and display
+? restore last used number
+? better display for sign bit(color? shape)
+
 . redesign layout
-. clean up code in update length, the shrink is too weird
 . clean up colors
-. add index indicating power for each digit 
+
+. add index indicating power for each digit
+. toggle groups of 4 on/off
 . different classes for different functions (bitshift, allswitch/neg, logic, +-)
+. swap number places
+
 . get better names bruh
+
 . add a toggle switch to signed/unsigned int (need code)
-. floats?
+. different update methods for signed/unsigned
+. floats
+
 . one extra number for operations
-. + -
-. convert decinal input to binary display
 . and or xor two numbers
+. + -
+
+. converter
 . display in dec and hex
+. convert decinal input to binary display
+
 . help
 . faq
 . introduction
-. bit shifting
-. toggle groups of 4 on/off
-. different update methods for signed/unsigned
+. less technical vocab mode
+
 . easters eggs probably
+. undo, redo (stack (which number, whatvalue))
+. cookies: signed?, last number, 
+. keyboard controls
+    ,/.: shift once
+    up/down: pick number
+    space: swap
+    left/right: pick digit (https://stackoverflow.com/questions/13651022/square-brackets-with-css)
+    +/-: in/decrement
+    z x c: and or xor
