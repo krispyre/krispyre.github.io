@@ -1,12 +1,14 @@
 /*title*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap');
+/*Everything else*/
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800;900&display=swap');
+
 /*Chinese*/
 @font-face {
     font-family: "LogoTypeGothic";
     src: url("../font/07LogoTypeGothic7.ttf");
 }
-/*Everything else*/
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800;900&display=swap');
+
 
 /*language*/
 html {
@@ -19,9 +21,11 @@ html .zh {
 }
 
 /*formats*/
-body {
+html, body {
     margin: 0;
     padding: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 .title {
     font-family: "Roboto Slab", serif;
@@ -34,6 +38,14 @@ body {
     font-size: 50px;
     font-weight: 900;
     color: #dedede;
+}
+button {
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	/*outline: inherit;*/
 }
 /*menu*/
 .menu {
@@ -74,30 +86,65 @@ body {
 
 /*bits*/
 .bit-containers {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 
     padding: 10px;
     margin: 40px;
 }
-.bits{
+
+.bit-groups {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: 0;
+    max-width: 100%;
+}
+.bit-groups::before {
+    position: absolute;
+    bottom: -5px;
+    /*content to be hard coded*/
+}
+/*depr
+.bitsWide {
     background-color: black;
     border-radius: 5px;
     padding: 10px;
 
     font-size: 100px;
-    font-weight: 700;
+    font-weight: 500;
     color: white;
     text-align: center;
 
     cursor: pointer;
     user-select: none;
 }
-.bits:active {
-    transform: scale(0.99);
+*/
+/*compact*/
+.bits {
+    background-color: black;
+    padding-inline: 10px;
+    margin: 5px 0 0 0;
+
+    font-size: 100px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    min-block-size: 0;
+
+    cursor: pointer;
+    user-select: none;
 }
+
+.bits+.bits {
+    border-left:3px solid gray;
+}
+
+/*.bits:active {
+    transform: scale(0.99);
+}*/
 
 .bits.zero {
     background-color: black;
@@ -117,6 +164,21 @@ body {
     background-color: #eeeeee;
 }
 
+.bits:focus-visible {
+    --bracket: rgb(0, 255, 200);
+    background-image: linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket));
+
+    background-repeat: no-repeat;
+    background-size: 8px 3px;
+        /* ^^^ This value should be equal to width of left OR right border.*/
+    background-position: top left, top right, bottom left, bottom right;
+
+    border: solid var(--bracket);
+    border-width: 0 3px;
+}
 /*signed bits*/
 .sign.zero {
     background-color: #0000aa;
@@ -148,3 +210,5 @@ body {
     0% {transform: scale(1);}
     100% {transform: scale(1.05);}
 }
+
+/*gd colon kitsune uwu*/

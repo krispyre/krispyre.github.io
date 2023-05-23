@@ -25,9 +25,17 @@ LEGEND
 
 5/5
 + sign calculation and display
++ redirect mobile to another html doc
++ add a toggle switch to signed/unsigned int
+
+7/5
++ +/- operations
+? undo stack cant record history yet
 ? restore last used number
 ? better display for sign bit(color? shape)
+? one extra number for operations
 
+. readme
 . redesign layout
 . clean up colors
 
@@ -35,25 +43,28 @@ LEGEND
 . toggle groups of 4 on/off
 . different classes for different functions (bitshift, allswitch/neg, logic, +-)
 . swap number places
+. use operation result as number
 
 . get better names bruh
 
-. add a toggle switch to signed/unsigned int (need code)
+
 . different update methods for signed/unsigned
 . floats
 
-. one extra number for operations
+. mobile version
+
 . and or xor two numbers
-. + -
 
 . converter
 . display in dec and hex
+. find a decent way to displaydslkjjdsalkfj;
 . convert decinal input to binary display
 
 . help
 . faq
 . introduction
 . less technical vocab mode
+. icon mode
 
 . easters eggs probably
 . undo, redo (stack (which number, whatvalue))
@@ -65,3 +76,4 @@ LEGEND
     left/right: pick digit (https://stackoverflow.com/questions/13651022/square-brackets-with-css)
     +/-: in/decrement
     z x c: and or xor
+    ctrl z: undo
