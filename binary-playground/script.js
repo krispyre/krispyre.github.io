@@ -15,14 +15,15 @@ $(document).ready(function(){
     var dec_valueB = 0;
     var dec_valueC = 0;
 
-    var bin1 = 0// int.toString(2);
     var bitsA = [0,0,0,0]; // for calculating things
     var bitsB = [0,0,0,0];// electric boogaloo
     var isSigned = $('#sign-box').is(":checked");
-    
-    // addsound effects onlick?
+    var isChooseA = true;// true for top num, false for lower num
 
-    // listeners
+    var stack = [];
+    var step = 0;
+
+    // FUNCTIONS
 
     // for independent bits
     // add this listener to a for loop across all #bitN
@@ -30,6 +31,7 @@ $(document).ready(function(){
     {
         let i = event.data.i;
         bitsA[i] = 1 - bitsA[i];
+        console.log("switched bit", i);
     }
 
     //for resetters
@@ -40,12 +42,23 @@ $(document).ready(function(){
         {
             bitsA[i] = b;
         }
+        console.log("set all bits to", b);
     }
 
     //for length menu, changes array and display
     function changeLength(event)
     {
-        let l = event.data.l;// target length
+        let l = 0;
+        console.log(typeof event);
+        if (typeof event == "number")
+        {
+            l = event;
+        }
+        else
+        {
+            l = event.data.l;// target length
+        }
+        
         int_length = l;// for displaying purposes only
 
         //changes the length of the array, keeps lower bits
@@ -65,22 +78,21 @@ $(document).ready(function(){
         }
 
         $("#bit-container-a").empty();
+
+        let groups = "";
         for (let i=0; i<l/4; i++)
         {
+            groups = `<span class="bit-groups" id="bit-ag${i}">\n`;
             for (let j=0; j<4; j++)
             {
-                $("#bit-container-a").append(`<div class="bits zero bit-changer" id="bit-a${i*4+j}">0</div>`);
-                
+                groups += `<button class="bits zero bit-changer" id="bit-a${i*4+j}">0</button>\n`;
             }
-            // seperator
-            if (!(i == l/4-1))
-            {
-                $("#bit-container-a").append("<pre>  </pre>");
-            }
+            groups += "</span>\n";
+            $("#bit-container-a").append(groups);
+            //$(`#bit-ag${i}`).before(l-i*4);
+            
             
         }
-        
-        
 
         // if the total width of the bits (and the space) is too large, shrink them
         /*if ((50 + 2) * l >= $(window).width())
@@ -96,10 +108,7 @@ $(document).ready(function(){
         $(".bits").css("width", `${bit_w}px`);
         $(".bits").css("font-size",`${bit_w*2}px`);
         bit_w = 50; // brh*/
-
-        //cur_length = l;
         
-        //console.log($(".bits").css("width"));
         console.log("length changed to", int_length);
         
     }
@@ -111,7 +120,7 @@ $(document).ready(function(){
         {
             bitsA[i] = 1 - bitsA[i];
         }
-
+        console.log("negated bits");
     }
 
     function shiftBits(event)
@@ -136,14 +145,74 @@ $(document).ready(function(){
 
     function crement(event)
     // add or subtract the number by 1
+    // +: turn any 1 into 0 until  found a 0 
+    // -: or turn any 0 into 1 until found a 1
     {
         let amt = event.data.a;
-        ;
+        if (amt == 1)
+        {
+            for (let n=bitsA.length, i=n-1; i>=0; i--)
+            {
+                if (bitsA[i] == 0)
+                {
+                    bitsA[i] = 1;
+                    return
+                }
+                else
+                {
+                    bitsA[i] = 0;
+                }
+
+            }
+            console.log("incremented");
+        }
+        else if (amt == -1)
+        {
+            for (let n=bitsA.length, i=n-1; i>=0; i--)
+            {
+                if (bitsA[i] == 1)
+                {
+                    bitsA[i] = 0;
+                    return
+                }
+                else
+                {
+                    bitsA[i] = 1;
+                }
+            }
+            console.log("decremented");
+        }
+        
+    }
+
+    // undo only idk how to do redo
+    function undo(event)
+    {
+        step--;
+        switch (stack.pop()[0])
+        {
+            case 0:// top is changed
+                bitsA = stack[stack.length-1][1];
+                break;
+            case 1:// bottom is changed
+                bitsA = stack[stack.length-1][1];
+                break;
+            case 2:// length
+                changeLength(stack[stack.length-1][1]);
+                break;
+            case 3:// sign
+                $("#sign-box").prop("checked", !$("#sign-box").prop("checked"));
+                
+        }
+        console.log("undone");
+        
+        
     }
     //for operators, updates the display according to array and the decimal value
     //stores numbers into localstorage
     function updateValue(event)
     {
+        step++;
         dec_valueA = 0;
         dec_valueB = 0;
         
@@ -165,10 +234,28 @@ $(document).ready(function(){
                 dec_valueA += (2**(n-1 - i)) * bitsA[i]
             }
         }
+
+        console.log("array updated");
+        /* stack manipulation yey
+        if (top is changed)
+        {
+            stack.append([0, bitsA]);
+        }
+        else if(bottom is changed){
+            stack.append([1, bitsB]);
+        }
+        else if (length is changed)
+        {
+            stack.append([2, int_length]);
+        }
+        else if (sign is changed)
+        {
+            stack.append([3, 1 or -1]);
+        }*/
+        
             // multiples by -1 if first bit is 1
 
         //update display
-        
         for (let i=0, n=bitsA.length; i<n; i++) 
         {
             $(`#bit-a${i}`).text(bitsA[i]);
@@ -192,9 +279,12 @@ $(document).ready(function(){
             $("#bit-a0").removeClass("sign");
         }
         
-        //debug
+        
         $("#dec-display").text(`Decimal value: ${dec_valueA}`);
-        console.log("bit1: ", bitsA);
+        console.log("display updated");
+        //debug
+        console.log("bitsA: ", bitsA);
+        console.log(" ");
 
         window.localStorage.setItem("num1", dec_valueA);
         window.localStorage.setItem("num2", dec_valueB);
@@ -218,6 +308,7 @@ $(document).ready(function(){
     for (let j=0, n=32; j<n; j++) // bruteforce it bruh
     {
         $(document).on("click", `#bit-a${j}`, {i:j}, switchBit);
+        $(document).on("click", `#bit-bs${j}`, {i:j}, switchBit);
     }
 
 
@@ -231,12 +322,11 @@ $(document).ready(function(){
     $(document).on("click", "#bit-negate", negateBits);
     $(document).on("click", "#set-on", {b:1}, setAllBits);
     $(document).on("click", "#set-off", {b:0}, setAllBits);
+    $(document).on("click", "#increment", {a:1}, crement);
+    $(document).on("click", "#decrement", {a:-1}, crement);
+    $(document).on("click", "#undo", undo);
     $(document).on("click", ".bit-changer", updateValue);// place this at the bottom
 
     
 
 });
-
-
-//"j."
-//     ~apandah
