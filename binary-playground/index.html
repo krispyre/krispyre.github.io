@@ -1,91 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>binary playground</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="An interactive visualization of binary operations.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="script.js"></script>
-    </head>
-
-    <body>
-        <h1 class="title">The B1nary Playgr0und.</h1>
-        
-        <div id="lengths" class="menu"><!--WIP-->
-            <input type="checkbox" class="bit-changer" id="sign-box">
-            <label for="sign-box">Signed?</label>
-            <span>
-                <button type="button" class="menu-item bit-changer" id="4bit">4 bits</button>
-                <button type="button" class="menu-item bit-changer" id="8bit">8 bits</button>
-                <button type="button" class="menu-item bit-changer" id="16bit">16 bits</button>
-                <button type="button" class="menu-item bit-changer" id="32bit">32 bits</button>
-            </span>
-            
-            <div id="dec-display">Decimal value: 0</div>
-        </div>
-
-        <div id="bit-containerz">
-            <div id="bit-container-a" class="bit-containers" style="margin-bottom: 0; padding-bottom: 0;">
-                <span class="bit-groups" id="bit-ag0">
-                    <button class="bits zero bit-changer" id="bit-a0">0</button>
-                    <button class="bits zero bit-changer" id="bit-a1">0</button>
-                    <button class="bits zero bit-changer" id="bit-a2">0</button>
-                    <button class="bits zero bit-changer" id="bit-a3">0</button>
-                </span>
-            </div>
-            <div id="bit-container-b" class="bit-containers" style="margin-top: 0; padding-top: 0;">
-                <span class="bit-groups" id="bit-bg0">
-                    <button class="bits zero bit-changer " id="bit-b0">0</button>
-                    <button class="bits zero bit-changer" id="bit-b1">0</button>
-                    <button class="bits zero bit-changer" id="bit-b2">0</button>
-                    <button class="bits zero bit-changer" id="bit-b3">0</button>
-                </span>
-            </div>
-                
-
-        </div>
-        
-
-        <div id="switches" class="menu2">
-            <button type="button" id="set-off" class="menu-item bit-changer">Clear all</button>
-            <button type="button" id="set-on" class="menu-item bit-changer">Set all</button>
-            <button type="button" id="bit-negate" class="menu-item bit-changer">Negate</button>
-            
-        </div>
-
-        <div id="1operators" class="menu2">
-            <button type="button" id="bitshift-left" class="menu-item bit-changer"><</button>
-            <button type="button" id="bitshift-right" class="menu-item bit-changer">></button>
-            <button type="button" id="increment" class="menu-item bit-changer">++</button>
-            <button type="button" id="decrement" class="menu-item bit-changer">--</button>
-            <button type="button" id="undo" class="menu-item bit-changer wip">undo</button>
-        </div>
-
-        <div id="2operators" class="menu2">
-
-            <button type="button" id="and" class="menu-item bit-changer wip">and</button>
-            <button type="button" id="or" class="menu-item bit-changer wip">or</button>
-            <button type="button" id="xor" class="menu-item bit-changer wip">xor</button>
-            <button type="button" id="add" class="menu-item bit-changer wip">+</button>
-            <button type="button" id="subtract" class="menu-item bit-changer wip">-</button>
-            <!--<button type="button" id="bitwise-or" class="menu-item bit-changer wip">-</button>-->
-        </div>
-
-        <footer>
-            <a href="../index.html">Go back</a>
-            <a href="index-zh.html">中</a>
-            <a href="https://github.com/kr15w/kr15w.github.io">Source code</a>
-            <span id="help" title="This is the hover help text. You're welcome.">?</span>
-        </footer>
-        
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>binary playground</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
-
-<!--"j."-->
-
-<!--       ~apandah-->
-
-<!-- creo songs are the goat-->
