@@ -6,3 +6,16 @@ html {
     font-family: "Poppins", sans-serif;
     background-color: #dedede;
 }
+.contact
+{
+    border-radius: 100%;
+    background-color: black;
+}
+.footer
+{
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    text-align: center;
+}
