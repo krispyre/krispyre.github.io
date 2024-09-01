@@ -15,15 +15,18 @@ function calcDec(d: Array<number>, isSigned: boolean) {
 }
 
 function App() {
-  const [digits, setDigits] = useState([1, 1, 1, 1]);
+  const [digits, setDigits] = useState([1, 1, 0, 0, 1, 1]);
   //const [decimal, setDecimal] = useState(calcDec(digits, false));
 
   let handleDigits = (i: number) => {
-    digits[i] = 1 - digits[i];
-    setDigits(digits);
+    // Don't change digits alone, make a copy and replace: https://react.dev/learn/updating-objects-in-state
+    let newDigits = digits.slice();
+    newDigits[i] = 1 - newDigits[i];
+    setDigits(newDigits);
 
     //console.log("clicked bit ", i);
     console.log(digits);
+    console;
   };
 
   return (
