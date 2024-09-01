@@ -1,0 +1,106 @@
+/*title*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap');
+/*Everything else*/
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800;900&display=swap');
+
+/*language*/
+html {
+    font-family: "Inconsolata", monospace;
+    background-color: #dedede;
+}
+
+/*doesnt work*/
+.center
+{
+  margin:auto;
+}
+/*formats*/
+
+.bit {
+  background-color: black;
+  color: #ffffff;
+  display:inline-block;
+  text-align: center;
+  margin: auto;
+
+  font-size: 10vw;
+  cursor: pointer;
+  border:none;
+	outline: inherit;
+  font-family: inherit;
+}
+
+.bit+.bit {
+  border-left:.03em solid grey;
+}
+
+/*.bits:active {
+    transform: scale(0.99);
+}*/
+
+.bits.zero {
+    background-color: black;
+    color: white;
+    /*border: 5px solid transparent;*/
+}
+.bits.zero:hover {
+    /*animation: tiny-grow 0.2s ease-out forwards 1;*/
+    background-color: #424242;
+}
+.bits.one {
+    background-color: white;
+    color: black;
+    /*border: 5px solid black;*/
+}
+.bits.one:hover {
+    background-color: #eeeeee;
+}
+
+.bit:focus-visible {
+    --bracket: rgb(0, 255, 200);
+    background-image: linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket)),
+        linear-gradient(var(--bracket), var(--bracket));
+
+    background-repeat: no-repeat;
+    background-size: 8px 3px;
+        /* ^^^ This value should be equal to width of left OR right border.*/
+    background-position: top left, top right, bottom left, bottom right;
+
+    border: solid var(--bracket);
+    border-width: 0 3px;
+}
+/*signed bits*/
+.sign.zero {
+    background-color: #0000aa;
+    color:#8a8aff;
+}
+.sign.zero:hover {
+    background-color: #0000bb;
+    color:#8a8aff;
+}
+.sign.one {
+    background-color: #aa0000;
+    color:#ff8a8a;
+}
+.sign.one:hover {
+    background-color: #bb0000;
+    color:#ff8a8a;
+}
+
+/*misc*/
+.wip {
+    background-color: #6f6f6f;
+    color:#2e2e2e;
+}
+
+#help {
+    cursor: help;
+}
+@keyframes tiny-grow {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.05);}
+}
+
+/*gd colon kitsune uwu*/
