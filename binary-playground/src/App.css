@@ -31,28 +31,28 @@ html {
 }
 
 .bit+.bit {
-  border-left:.03em solid grey;
+  border-left:.04em solid grey;
 }
 
 /*.bits:active {
     transform: scale(0.99);
 }*/
 
-.bits.zero {
+.bit.zero {
     background-color: black;
     color: white;
     /*border: 5px solid transparent;*/
 }
-.bits.zero:hover {
+.bit.zero:hover {
     /*animation: tiny-grow 0.2s ease-out forwards 1;*/
     background-color: #424242;
 }
-.bits.one {
+.bit.one {
     background-color: white;
     color: black;
     /*border: 5px solid black;*/
 }
-.bits.one:hover {
+.bit.one:hover {
     background-color: #eeeeee;
 }
 
