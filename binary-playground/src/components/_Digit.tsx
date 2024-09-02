@@ -7,11 +7,9 @@ function Digits({ value, onClick }: Props) {
   return (
     <>
       <button
-        className="bit"
+        className={value === 0 ? "bit zero" : "bit one"}
         onClick={onClick}
-      >
-        {value}
-      </button>
+      ></button>
     </>
   );
 }
