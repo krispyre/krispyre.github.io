@@ -1,0 +1,30 @@
+html {
+    display:block;
+    background-color: grey;
+}
+.canvas_container {
+    position: relative;
+    width:512px;
+    height:512px;
+}
+.layer {
+    position:absolute;
+    width: 512px;
+    height: 512px;
+}
+.dark {
+    background-color: #2f3136;
+}
+.light {
+    background-color: white;
+}
+/*0 for dark mode*/
+#layer0 {
+    outline:rgb(102, 102, 102) .3em solid;
+    z-index: 2;
+}
+
+#circle_mask {
+    z-index:999;
+    pointer-events: none;
+}

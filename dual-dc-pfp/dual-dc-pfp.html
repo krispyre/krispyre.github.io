@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Light/dark mode pfp maker
+        </title>
+        <link rel="stylesheet" href="dual-dc-pfp.css">
+    </head>
+
+    <div class="canvas_container">
+        <div id="background" class="layer dark" width="512" height="512"></div>
+        <canvas id="layer0" class="layer" width="512" height="512">
+            Can't load canvas! Check if js is disabled.
+        </canvas>
+        <canvas id="layer1" class="layer" width="512" height="512">
+            Can't load canvas! Check if js is disabled.
+        </canvas>
+        <canvas id="circle_mask" class="layer" width="512" height="512"></canvas>
+    </div>
+
+    <div class="labels">
+        <div>
+            <label for="pen_size">pen size</label>
+            <input type="range" min="1" max="256" value="20" class="slider" id="pen_size" name="pen_size">
+            <output value="pen_size"></output>
+        </div>
+        <div>
+            <label for="is_lisght">light mode?</label>
+            <input type="checkbox" name="is_light" id="is_light" onclick="switchMode()">
+        </div>
+        <div>
+            <label for="show_circle_mask">show circle mask?</label>
+            <input type="checkbox" name="show_circle_mask" id="show_circle_mask" onclick="drawCircleMask()">
+        </div>
+        <button name="clearLayerLight" id="clearLayerLight" onclick="clearLayer(layerLight,layerLightCtx)">clear light mode</button>
+        <button name="clearLayerDark" id="clearLayerDark" onclick="clearLayer(layerDark,layerDarkCtx)">clear dark mode</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://requirejs.org/docs/release/2.3.7/minified/require.js"></script>
+    <!--PX-BRUSH BY kozo002: https://github.com/kozo002/px-brush-->
+    <script src="dual-dc-pfp.js"></script>
+    
+
+</html>
