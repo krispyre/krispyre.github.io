@@ -1,6 +1,3 @@
-//var PxBrush = require('px-brush');
-
-
 const cMask = document.getElementById("circle_mask").getContext("2d");
 const WIDTH = HEIGHT = 512;
 let focusDark = true; // draw on dark mode (white ink)
@@ -145,10 +142,16 @@ function switchMode() {
   }
   
 }
-
+function changeBrushSize() {
+  brushSize = $("#brush_size").val();
+  console.log("change brush size to", brushSize);
+  layerDarkCtx.lineWidth = brushSize;
+  layerLightCtx.lineWidth = brushSize;
+}
 function saveImage() {
 
   //window.open(url, '_blank').focus();
 }
 ////////////////////defaults unchecked boxes, TODO implement cookies?///////////////
 $(":checkbox").prop('checked', false);
+$("#brush_size").val("4");

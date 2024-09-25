@@ -18,11 +18,15 @@
         <canvas id="circle_mask" class="layer" width="512" height="512"></canvas>
     </div>
 
-    <div class="labels">
+    <div class="tools">
         <div>
-            <label for="pen_size">pen size</label>
-            <input type="range" min="1" max="256" value="20" class="slider" id="pen_size" name="pen_size">
-            <output value="pen_size"></output>
+            <button name="undo" id="undo">undo</button>
+            <button name="undo" id="undo">redo</button>
+        </div>
+        <div>
+            <label for="brush_size">brush size</label>
+            <input type="number" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
+            <output value="brush_size"></output>
         </div>
         <div>
             <label for="is_lisght">light mode?</label>
