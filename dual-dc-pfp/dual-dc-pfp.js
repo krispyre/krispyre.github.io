@@ -2,19 +2,20 @@
 
 
 const cMask = document.getElementById("circle_mask").getContext("2d");
+const WIDTH = HEIGHT = 512;
 let focusDark = true; // draw on dark mode (white ink)
 let brushSize = 4; // TODO: let slider change this
 //const brushDark = new PxBrush(l0); // brush FOR dark mode, so it's white
 cMask.imageSmoothingEnabled= false;
-//https://codepen.io/zsolt555/pen/rpPXOB
-//////////////////////////////////////////////////////////////////////////////
+
+//drawing//////////////////////////////////////////////////////////////
 const layerDark = document.getElementById("layer0")
 const layerDarkCtx = layerDark.getContext("2d");
 
 const layerLight = document.getElementById("layer1");
 const layerLightCtx = layerLight.getContext("2d");
 
-layerDarkCtx.strokeStyle = "#FF0000";
+layerDarkCtx.strokeStyle = "#FFFFFF";
 layerDarkCtx.lineJoin = "round";
 layerDarkCtx.lineCap = "round";
 layerDarkCtx.lineWidth = brushSize;
@@ -50,8 +51,7 @@ layerDark.addEventListener("mouseup",() => {
 layerDark.addEventListener("mouseleave",() => {
   isDrawing=false;
 })
-layerDark.addEventListener("mouseup",ditherClear);//TODO
-////
+
 layerLight.addEventListener("mousedown", (e) => {
   isDrawing=true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -64,14 +64,41 @@ layerLight.addEventListener("mouseup",() => {
 layerLight.addEventListener("mouseleave",() => {
   isDrawing=false;
 })
-///////////////////////////////////////////////////////////////////////////////////
+
+//dither///////////////////////////////////////////////////////////////////////
+//why is it all zeros
+function ditherClear() {
+  let layerDarkData = layerDarkCtx.getImageData(0,0,WIDTH,HEIGHT);
+  //const layerLightData = layerLightCtx.getImageData(0,0,WIDTH,HEIGHT);
+  let data = layerDarkData.data;
+  for(let y=0;y<HEIGHT;y++) {
+    for(let x=0;x<WIDTH;x++)
+      {
+        //console.log(data[i],data[i+1],data[i+2],data[i+3]);
+        if((x+y)%2 == 0)
+        {
+          let i = 4*(x+WIDTH*y)
+          /*data[i] = 255;
+          data[i+1] = 255;
+          data[i+2] = 255;*/
+          data[i+3] = 0;
+        }
+      }
+  }
+  layerDarkCtx.putImageData(layerDarkData,0,0);
+  console.log();
+}
+
+layerDark.addEventListener("mouseup",ditherClear);//TODO
+
+//buttons/////////////////////////////////////////////////////////////////////
 function clearLayer(layer,layerCtx) {
-  layerCtx.clearRect(0,0,layer.width,layer.height);
+  layerCtx.clearRect(0,0,WIDTH,HEIGHT);
 }
 function drawCircleMask() {
     if($("#show_circle_mask").is(":checked")) {
         cMask.fillStyle = "rgba(0, 0, 0, .3)";
-        cMask.fillRect(0,0,513,513)
+        cMask.fillRect(0,0,WIDTH,HEIGHT)
 
         cMask.beginPath();
         cMask.arc(255,255,255,0,Math.PI*2); 
@@ -106,13 +133,7 @@ function switchMode() {
   }
   
 }
-function ditherClear(layerCtx,isOdd=false) {
-  //isOdd determines if it deletes odd number of pixels or not
-  layerData = layerCtx.createImageData(512,512);
-  console.log("TODO dither");
-  //TODO
 
-}
 function saveImage() {
 
   //window.open(url, '_blank').focus();
