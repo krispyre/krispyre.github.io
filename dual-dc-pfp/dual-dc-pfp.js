@@ -188,9 +188,9 @@ $("#showCircleMask").on("click", ()=> {
     }
 });
 //switch mode
-$("#is_light").on("click", () => {
+$("#isLight").on("click", () => {
   const bg = $("#background");
-  if ($('#is_light').is(":checked")){
+  if ($('#isLight').is(":checked")){
     console.log("change from dark to light bg");
     bg.css("background-color",COL_LIGHT);
     //bg.removeClass("dark").addClass("light");
@@ -218,17 +218,17 @@ $("#brushSize").on("change", () => {
   layerLightCtx.lineWidth = brushSize;
   console.log("change brush size to", brushSize);
 });
-function changeEraserSize() {
+$("#eraserSize").on("change", () => {
   //Yes i have to write this twice for clarity
   eraserSize = $("#eraser_size").val();
   layerDarkCtx.lineWidth = eraserSize;
   layerLightCtx.lineWidth = eraserSize;
   console.log("change eraser size to", eraserSize);
-}
-function nameFile() {
+});
+$("#filenameField").on("change", () =>{
   filename = $("#filename").val();
-}
-function saveImage() {
+});
+$("#saveButton").on("click", () => {
   // use UI layer as a placeholder :p
   //layerUiCtx.globalCompositeOperation = "destination-atop";
   // todo: save image with both layers
@@ -244,8 +244,8 @@ function saveImage() {
   //window.open(urlA, '_blank').focus();
   urlA.remove();
   layerUiCtx.clearRect(0,0,LENGTH,LENGTH);
-}
-////////////////////defaults unchecked boxes, TODO implement cookies?///////////////
+});
+////////////////////defaults, TODO implement cookies?///////////////////////////////////////////
 $(".dark").css("background-color",COL_DARK);
 $(".light").css("background-color",COL_LIGHT);
 

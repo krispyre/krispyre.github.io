@@ -37,8 +37,8 @@
             <input type="range" min="1" max="100" id="eraserSize" name="eraserSize">
         </div>
         <div>
-            <label for="is_lisght">light mode?</label>
-            <input type="checkbox" name="is_light" id="is_light" onclick="switchMode()">
+            <label for="isLight">light mode?</label>
+            <input type="checkbox" name="isLight" id="isLight">
         </div>
         <div>
             <label for="showCircleMask">show circle mask?</label>
@@ -48,8 +48,8 @@
         <button name="clearLayerDark" id="clearLayerDark" onclick="clearLayer(layerDarkCtx)">clear dark mode</button>
         <hr/>
         <div id="saveField">
-            <input type="text" placeholder="file name=>" id="filename" onchange="nameFile()">
-            <button onclick="saveImage()">save image</button>
+            <input type="text" placeholder="file name=>" id="filenameField">
+            <button id="saveButton">save image</button>
         </div>
     </div>
 
