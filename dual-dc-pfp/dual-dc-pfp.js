@@ -20,7 +20,7 @@ layerDarkCtx.lineJoin = "round";
 layerDarkCtx.lineCap = "round";
 layerDarkCtx.lineWidth = brushSize;
 
-layerLightCtx.strokeStyle = "#00FF00";
+layerLightCtx.strokeStyle = "#2F3136";
 layerLightCtx.lineJoin = "round";
 layerLightCtx.lineCap = "round";
 layerLightCtx.lineWidth = brushSize;
@@ -69,11 +69,12 @@ layerLight.addEventListener("mouseleave",() => {
 //why is it all zeros
 function ditherClear() {
   let layerDarkData = layerDarkCtx.getImageData(0,0,WIDTH,HEIGHT);
-  //const layerLightData = layerLightCtx.getImageData(0,0,WIDTH,HEIGHT);
-  let data = layerDarkData.data;
+  let layerLightData = layerLightCtx.getImageData(0,0,WIDTH,HEIGHT);
+  
   for(let y=0;y<HEIGHT;y++) {
     for(let x=0;x<WIDTH;x++)
       {
+        let data = layerDarkData.data;
         //console.log(data[i],data[i+1],data[i+2],data[i+3]);
         if((x+y)%2 == 0)
         {
@@ -83,13 +84,24 @@ function ditherClear() {
           data[i+2] = 255;*/
           data[i+3] = 0;
         }
+        data = layerLightData.data;
+        if((x+y)%2 == 1)
+          {
+            i = 4*(x+WIDTH*y)
+            /*data[i] = 255;
+            data[i+1] = 255;
+            data[i+2] = 255;*/
+            data[i+3] = 0;
+          }
       }
   }
   layerDarkCtx.putImageData(layerDarkData,0,0);
-  console.log();
+  layerLightCtx.putImageData(layerLightData,0,0);
+  console.log("dither clear");
 }
 
-layerDark.addEventListener("mouseup",ditherClear);//TODO
+layerDark.addEventListener("mouseup",ditherClear);
+layerLight.addEventListener("mouseup",ditherClear);
 
 //buttons/////////////////////////////////////////////////////////////////////
 function clearLayer(layer,layerCtx) {
