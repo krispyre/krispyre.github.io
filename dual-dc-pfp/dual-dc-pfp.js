@@ -1,26 +1,33 @@
-const cMask = document.getElementById("circle_mask").getContext("2d");
-const WIDTH = HEIGHT = 512;
-let focusDark = true; // draw on dark mode (white ink)
-let brushSize = 4; // TODO: let slider change this
-//const brushDark = new PxBrush(l0); // brush FOR dark mode, so it's white
-cMask.imageSmoothingEnabled= false;
-
-//drawing//////////////////////////////////////////////////////////////
 const layerDark = document.getElementById("layer0")
 const layerDarkCtx = layerDark.getContext("2d");
 
 const layerLight = document.getElementById("layer1");
 const layerLightCtx = layerLight.getContext("2d");
 
+const cMask = document.getElementById("circle_mask").getContext("2d");
+const LENGTH = 512;
+let focusDark = true; // draw on dark mode (white ink)
+let brushSize = 4; 
+//const brushDark = new PxBrush(l0); // brush FOR dark mode, so it's white
+cMask.imageSmoothingEnabled= false;
+
+//init size///////////////////
+$("#background").width(LENGTH);
+$("#background").height(LENGTH);
+layerDark.width = layerDark.height = layerLight.width = layerLight.height = LENGTH;
+cMask.canvas.width=cMask.canvas.height = LENGTH;
+//drawing//////////////////////////////////////////////////////////////
 layerDarkCtx.strokeStyle = "#FFFFFF";
 layerDarkCtx.lineJoin = "round";
 layerDarkCtx.lineCap = "round";
 layerDarkCtx.lineWidth = brushSize;
+layerDarkCtx.globalCompositeOperation = 'source-over';
 
 layerLightCtx.strokeStyle = "#2F3136";
 layerLightCtx.lineJoin = "round";
 layerLightCtx.lineCap = "round";
 layerLightCtx.lineWidth = brushSize;
+layerLightCtx.globalCompositeOperation = 'source-over';
 
 let isDrawing = false;
 let lastX = 0;
@@ -28,6 +35,17 @@ let lastY = 0;
 
 function draw(e,layerCtx) {
   if (!isDrawing) { return; }
+  if ($("#isEraser").is(":checked")) {
+    layerCtx.strokeStyle = "rgba(0,0,0,1)" 
+    layerDarkCtx.globalCompositeOperation = 'destination-out'//Uh idk it kinda worked lol
+    layerLightCtx.globalCompositeOperation = 'destination-out'
+  }
+  else {
+    layerDarkCtx.strokeStyle = "#FFFFFF";
+    layerLightCtx.strokeStyle = "#2F3136";
+    layerDarkCtx.globalCompositeOperation = 'source-over';
+    layerLightCtx.globalCompositeOperation = 'source-over';
+  }
   layerCtx.beginPath();
   layerCtx.moveTo(lastX,lastY);
   layerCtx.lineTo(e.offsetX,e.offsetY);
@@ -63,19 +81,18 @@ layerLight.addEventListener("mouseleave",() => {
 })
 
 //dither///////////////////////////////////////////////////////////////////////
-//why is it all zeros
 function ditherClear() {
-  let layerDarkData = layerDarkCtx.getImageData(0,0,WIDTH,HEIGHT);
-  let layerLightData = layerLightCtx.getImageData(0,0,WIDTH,HEIGHT);
+  let layerDarkData = layerDarkCtx.getImageData(0,0,LENGTH,LENGTH);
+  let layerLightData = layerLightCtx.getImageData(0,0,LENGTH,LENGTH);
   
-  for(let y=0;y<HEIGHT;y++) {
-    for(let x=0;x<WIDTH;x++)
+  for(let y=0;y<LENGTH;y++) {
+    for(let x=0;x<LENGTH;x++)
       {
         let data = layerDarkData.data;
         //console.log(data[i],data[i+1],data[i+2],data[i+3]);
         if((x+y)%2 == 0)
         {
-          let i = 4*(x+WIDTH*y)
+          let i = 4*(x+LENGTH*y)
           /*data[i] = 255;
           data[i+1] = 255;
           data[i+2] = 255;*/
@@ -84,7 +101,7 @@ function ditherClear() {
         data = layerLightData.data;
         if((x+y)%2 == 1)
           {
-            i = 4*(x+WIDTH*y)
+            i = 4*(x+LENGTH*y)
             /*data[i] = 255;
             data[i+1] = 255;
             data[i+2] = 255;*/
@@ -102,12 +119,12 @@ layerLight.addEventListener("mouseup",ditherClear);
 
 //buttons/////////////////////////////////////////////////////////////////////
 function clearLayer(layer,layerCtx) {
-  layerCtx.clearRect(0,0,WIDTH,HEIGHT);
+  layerCtx.clearRect(0,0,LENGTH,LENGTH);
 }
 function drawCircleMask() {
     if($("#show_circle_mask").is(":checked")) {
         cMask.fillStyle = "rgba(0, 0, 0, .3)";
-        cMask.fillRect(0,0,WIDTH,HEIGHT)
+        cMask.fillRect(0,0,LENGTH,LENGTH)
 
         cMask.beginPath();
         cMask.arc(255,255,255,0,Math.PI*2); 

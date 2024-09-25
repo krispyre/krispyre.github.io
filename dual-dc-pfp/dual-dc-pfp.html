@@ -8,17 +8,21 @@
     </head>
 
     <div class="canvas_container">
-        <div id="background" class="layer dark" width="512" height="512"></div>
-        <canvas id="layer0" class="layer" width="512" height="512">
+        <div id="background" class="layer dark" width="" height=""></div>
+        <canvas id="layer0" class="layer" width="" height="">
             Can't load canvas! Check if js is disabled.
         </canvas>
-        <canvas id="layer1" class="layer" width="512" height="512">
+        <canvas id="layer1" class="layer" width="" height="">
             Can't load canvas! Check if js is disabled.
         </canvas>
-        <canvas id="circle_mask" class="layer" width="512" height="512"></canvas>
+        <canvas id="circle_mask" class="layer" width="" height=""></canvas>
     </div>
 
     <div class="tools">
+        <div>
+            <label for="isEraser">eraser?</label>
+            <input type="checkbox" name="isEraser" id="isEraser">
+        </div>
         <div>
             <button name="undo" id="undo">undo</button>
             <button name="undo" id="undo">redo</button>
@@ -26,7 +30,10 @@
         <div>
             <label for="brush_size">brush size</label>
             <input type="number" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
-            <output value="brush_size"></output>
+        </div>
+        <div>
+            <label for="eraser_size">eraser size</label>
+            <input type="number" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
         </div>
         <div>
             <label for="is_lisght">light mode?</label>
