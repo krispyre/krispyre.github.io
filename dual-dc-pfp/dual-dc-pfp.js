@@ -12,19 +12,21 @@ const layerUi = document.getElementById("ui");
 const layerUiCtx = layerUi.getContext("2d");
 //todo: show brush/eraser size on screen when chanign
 
-const cMask = document.getElementById("circle_mask").getContext("2d");
+const cMaskCtx = document.getElementById("circle_mask").getContext("2d");
 const LENGTH = 512;
 let focusDark = true; // draw on dark mode (white ink)
 let brushSize = 4; 
 let eraserSize = 16;
-//const brushDark = new PxBrush(l0); // brush FOR dark mode, so it's white
-cMask.imageSmoothingEnabled= false;
+
+layerDarkCtx.imageSmoothingEnabled= false;
+layerLightCtx.imageSmoothingEnabled= false;
+cMaskCtx.imageSmoothingEnabled= false;
 
 //init size///////////////////
 $("#background").width(LENGTH);
 $("#background").height(LENGTH);
 layerUi.width = layerUi.height = layerDark.width = layerDark.height = layerLight.width = layerLight.height = LENGTH;
-cMask.canvas.width=cMask.canvas.height = LENGTH;
+cMaskCtx.canvas.width=cMaskCtx.canvas.height = LENGTH;
 
 //drawing//////////////////////////////////////////////////////////////
 layerDarkCtx.strokeStyle = COL_LIGHT;
@@ -170,21 +172,22 @@ function clearLayer(layerCtx) {
 }
 //show circle mask
 $("#showCircleMask").on("click", ()=> {
-    if($("#show_circle_mask").is(":checked")) {
+    if($("#showCircleMask").is(":checked")) {
       console.log("show mask");
-      cMask.fillStyle = "rgba(0, 0, 0, .3)";
-      cMask.fillRect(0,0,LENGTH,LENGTH)
+      cMaskCtx.fillStyle = "rgba(0, 0, 0, .3)";
+      cMaskCtx.fillRect(0,0,LENGTH,LENGTH)
 
-      cMask.beginPath();
-      cMask.arc(255,255,255,0,Math.PI*2); 
-      cMask.clip();
+      cMaskCtx.beginPath();
+      cMaskCtx.arc(255,255,255,0,Math.PI*2); 
+      cMaskCtx.clip();
 
-      cMask.clearRect(0,0,LENGTH,LENGTH);
+      cMaskCtx.clearRect(0,0,LENGTH,LENGTH);
 
     }
     else {
+      cMaskCtx.clearRect(0,0,999999,9999)
+      //todo doesnt work ^^^
       console.log("hide mask");
-      cMask.clearRect(0,0,LENGTH,LENGTH);
     }
 });
 //switch mode
