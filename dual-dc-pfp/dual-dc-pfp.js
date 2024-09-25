@@ -106,6 +106,10 @@ function switchMode() {
   }
   
 }
+function changeBrushSize() {
+  brushSize = $("#pen_size_select").val();
+  //$("#pen_size_output").text($("#pen_size_select").val());
+}
 function ditherClear(layerCtx,isOdd=false) {
   //isOdd determines if it deletes odd number of pixels or not
   layerData = layerCtx.createImageData(512,512);
