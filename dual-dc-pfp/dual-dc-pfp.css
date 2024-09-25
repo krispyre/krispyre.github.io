@@ -14,12 +14,13 @@ html {
     width: 512px;
     height: 512px;
 }
-.dark {
-    background-color: #2f3136;
+/*.dark {
+    background-color: #00FF00;
 }
 .light {
-    background-color: white;
-}
+    background-color: #0000FF;
+}*/
+
 /*0 for dark mode*/
 
 #layer0 {
