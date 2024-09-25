@@ -15,6 +15,7 @@
         <canvas id="layer1" class="layer" width="" height="">
             Can't load canvas! Check if js is disabled.
         </canvas>
+        <canvas id="ui" class="layer" width="" height=""></canvas>
         <canvas id="circle_mask" class="layer" width="" height=""></canvas>
     </div>
 
@@ -29,11 +30,11 @@
         </div>
         <div>
             <label for="brush_size">brush size</label>
-            <input type="number" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
+            <input type="range" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
         </div>
         <div>
             <label for="eraser_size">eraser size</label>
-            <input type="number" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeEraserSize()">
+            <input type="range" min="1" max="256" value="20" id="eraser_size" name="eraser_size" onchange="changeEraserSize()">
         </div>
         <div>
             <label for="is_lisght">light mode?</label>
@@ -45,6 +46,11 @@
         </div>
         <button name="clearLayerLight" id="clearLayerLight" onclick="clearLayer(layerLight,layerLightCtx)">clear light mode</button>
         <button name="clearLayerDark" id="clearLayerDark" onclick="clearLayer(layerDark,layerDarkCtx)">clear dark mode</button>
+        <hr/>
+        <div id="saveField">
+            <input type="text" placeholder="file name=>" id="filename" onchange="nameFile()">
+            <button onclick="saveImage()">save image</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
