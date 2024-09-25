@@ -9,10 +9,10 @@
 
     <div class="canvas_container">
         <div id="background" class="layer dark" width="" height=""></div>
-        <canvas id="layer0" class="layer" width="" height="">
+        <canvas id="layer0" class="layer layerDraw" width="" height="">
             Can't load canvas! Check if js is disabled.
         </canvas>
-        <canvas id="layer1" class="layer" width="" height="">
+        <canvas id="layer1" class="layer layerDraw" width="" height="">
             Can't load canvas! Check if js is disabled.
         </canvas>
         <canvas id="ui" class="layer" width="" height=""></canvas>
@@ -24,28 +24,28 @@
             <label for="isEraser">eraser?</label>
             <input type="checkbox" name="isEraser" id="isEraser">
         </div>
-        <div>
-            <button name="undo" id="undo">undo</button>
-            <button name="undo" id="undo">redo</button>
+        <div id="undoStack">
+            <button name="undo" id="undo" readonly>undo</button>
+            <button name="redo" id="redo" readonly>redo</button>
         </div>
-        <div>
-            <label for="brush_size">brush size</label>
-            <input type="range" min="1" max="256" value="20" id="brush_size" name="brush_size" onchange="changeBrushSize()">
+        <div id="brushSettings">
+            <label for="brushSize">brush size</label>
+            <input type="range" min="1" max="100" id="brushSize" name="brushSize">
         </div>
-        <div>
-            <label for="eraser_size">eraser size</label>
-            <input type="range" min="1" max="256" value="20" id="eraser_size" name="eraser_size" onchange="changeEraserSize()">
+        <div id="eraserSettings">
+            <label for="eraserSize">eraser size</label>
+            <input type="range" min="1" max="100" id="eraserSize" name="eraserSize">
         </div>
         <div>
             <label for="is_lisght">light mode?</label>
             <input type="checkbox" name="is_light" id="is_light" onclick="switchMode()">
         </div>
         <div>
-            <label for="show_circle_mask">show circle mask?</label>
-            <input type="checkbox" name="show_circle_mask" id="show_circle_mask" onclick="drawCircleMask()">
+            <label for="showCircleMask">show circle mask?</label>
+            <input type="checkbox" name="showCircleMask" id="showCircleMask">
         </div>
-        <button name="clearLayerLight" id="clearLayerLight" onclick="clearLayer(layerLight,layerLightCtx)">clear light mode</button>
-        <button name="clearLayerDark" id="clearLayerDark" onclick="clearLayer(layerDark,layerDarkCtx)">clear dark mode</button>
+        <button name="clearLayerLight" id="clearLayerLight" onclick="clearLayer(layerLightCtx)">clear light mode</button>
+        <button name="clearLayerDark" id="clearLayerDark" onclick="clearLayer(layerDarkCtx)">clear dark mode</button>
         <hr/>
         <div id="saveField">
             <input type="text" placeholder="file name=>" id="filename" onchange="nameFile()">

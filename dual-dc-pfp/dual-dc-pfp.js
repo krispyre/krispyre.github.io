@@ -25,6 +25,7 @@ $("#background").width(LENGTH);
 $("#background").height(LENGTH);
 layerUi.width = layerUi.height = layerDark.width = layerDark.height = layerLight.width = layerLight.height = LENGTH;
 cMask.canvas.width=cMask.canvas.height = LENGTH;
+
 //drawing//////////////////////////////////////////////////////////////
 layerDarkCtx.strokeStyle = COL_LIGHT;
 layerDarkCtx.lineJoin = "round";
@@ -42,26 +43,9 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-function draw(e,layerCtx) {
+function drawMouse(e,layerCtx) {
   if (!isDrawing) { return; }
-  if ($("#isEraser").is(":checked")) {
-    //Todo add eraser size, also a better way to change brush size 
-    //Eraser settings
-    layerDarkCtx.lineWidth = eraserSize;
-    layerLightCtx.lineWidth = eraserSize;
-    layerCtx.strokeStyle = "rgba(0,0,0,1)" 
-    layerCtx.globalCompositeOperation = 'destination-out'//Uh idk it kinda worked lol
-    layerLightCtx.globalCompositeOperation = 'destination-out'
-  }
-  else {
-    //Brush settings
-    layerDarkCtx.lineWidth = brushSize;
-    layerLightCtx.lineWidth = brushSize;
-    layerDarkCtx.strokeStyle = "#FFFFFF";
-    layerLightCtx.strokeStyle = "#2F3136";
-    layerDarkCtx.globalCompositeOperation = 'source-over';
-    layerLightCtx.globalCompositeOperation = 'source-over';
-  }
+  
   layerCtx.beginPath();
   layerCtx.moveTo(lastX,lastY);
   layerCtx.lineTo(e.offsetX,e.offsetY);
@@ -69,47 +53,52 @@ function draw(e,layerCtx) {
   //console.log(layerCtx);
   [lastX, lastY] = [e.offsetX, e.offsetY];
 }
+function drawTouch(e,layerCtx) {
+  layerCtx.beginPath();
+  layerCtx.moveTo(lastX,lastY);
+  layerCtx.lineTo(e.touches[0].clientX,e.touches[0].clientY);
+  layerCtx.stroke();
+  //console.log(layerCtx);
+  [lastX, lastY] = [e.touches[0].clientX, e.touches[0].clientY];
+}
 
+//imagine mixing plain js and jquery
 layerDark.addEventListener("click",(e)=>{
   isDrawing=true;
-  draw(e,layerDarkCtx);
+  drawMouse(e,layerDarkCtx);
   isDrawing=false;
   ditherClear();
 });
-layerDark.addEventListener("mousedown", (e) => {
+layerLight.addEventListener("click",(e)=>{
+  isDrawing=true;
+  drawMouse(e,layerLightCtx);
+  isDrawing=false;
+  ditherClear();
+});
+$(document).on("mousedown", ".layerDraw",(e) => {
   isDrawing=true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
   //console.log(lastX, lastY);
 })
-layerDark.addEventListener("mousemove", (e)=> {draw(e,layerDarkCtx);});
-layerDark.addEventListener("mouseup",() => {
+layerDark.addEventListener("mousemove", (e)=> {drawMouse(e,layerDarkCtx);});
+layerLight.addEventListener("mousemove", (e)=> {drawMouse(e,layerLightCtx)});
+$(document).on("mouseup",".layerDraw",() => {
   isDrawing=false;
 })
+/*
 layerDark.addEventListener("mouseleave",() => {
   isDrawing=false;
   ditherClear();
 })
+*/
 
-layerLight.addEventListener("click",(e)=>{
-  isDrawing=true;
-  draw(e,layerLightCtx);
-  isDrawing=false;
-  ditherClear();
-});
-layerLight.addEventListener("mousedown", (e) => {
-  isDrawing=true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-  //console.log(lastX, lastY);
-})
-layerLight.addEventListener("mousemove", (e)=> {draw(e,layerLightCtx)});
-layerLight.addEventListener("mouseup",() => {
-  isDrawing=false;
-})
+
+/*
 layerLight.addEventListener("mouseleave",() => {
   isDrawing=false;
   ditherClear();
 })
-
+*/
 //dither///////////////////////////////////////////////////////////////////////
 function ditherClear() {
   let layerDarkData = layerDarkCtx.getImageData(0,0,LENGTH,LENGTH);
@@ -144,14 +133,43 @@ function ditherClear() {
   console.log("dither clear");
 }
 
-layerDark.addEventListener("mouseup",ditherClear);
-layerLight.addEventListener("mouseup",ditherClear);
+$(document).on("mouseup",".layerDraw",ditherClear);
 
 //buttons/////////////////////////////////////////////////////////////////////
-function clearLayer(layer,layerCtx) {
+//switch tool
+$("#isEraser").on("click",()=> {
+  if ($("#isEraser").is(":checked")) {
+    //Todo add eraser size, also a better way to change brush size 
+    //Eraser settings
+    layerDarkCtx.lineWidth = eraserSize;
+    layerLightCtx.lineWidth = eraserSize;
+    layerDarkCtx.strokeStyle = "rgba(0,0,0,1)" ;
+    layerLightCtx.strokeStyle = "rgba(0,0,0,1)" ;
+    layerDarkCtx.globalCompositeOperation = "destination-out"
+    layerLightCtx.globalCompositeOperation = "destination-out"//Uh idk it kinda worked lol
+    $("#brushSettings").hide();
+    $("#eraserSettings").show();
+    
+  }
+  else {
+    //Brush settings
+    layerDarkCtx.lineWidth = brushSize;
+    layerLightCtx.lineWidth = brushSize;
+    layerDarkCtx.strokeStyle = "#FFFFFF";
+    layerLightCtx.strokeStyle = "#2F3136";
+    layerDarkCtx.globalCompositeOperation = "source-over";
+    layerLightCtx.globalCompositeOperation = 'source-over';
+    $("#brushSettings").show();
+    $("#eraserSettings").hide();
+  }
+});
+
+//idk how to turn this into jq
+function clearLayer(layerCtx) {
   layerCtx.clearRect(0,0,LENGTH,LENGTH);
 }
-function drawCircleMask() {
+//show circle mask
+$("#showCircleMask").on("click", ()=> {
     if($("#show_circle_mask").is(":checked")) {
       console.log("show mask");
       cMask.fillStyle = "rgba(0, 0, 0, .3)";
@@ -168,15 +186,14 @@ function drawCircleMask() {
       console.log("hide mask");
       cMask.clearRect(0,0,LENGTH,LENGTH);
     }
-    
-}
-function switchMode() {
+});
+//switch mode
+$("#is_light").on("click", () => {
   const bg = $("#background");
   if ($('#is_light').is(":checked")){
     console.log("change from dark to light bg");
     bg.css("background-color",COL_LIGHT);
     //bg.removeClass("dark").addClass("light");
-    focusDark=true;
     //layerLight.style.display="block";
     //layerDark.style.display="none";
     layerLight.style.zIndex="2";
@@ -192,15 +209,21 @@ function switchMode() {
     layerDark.style.zIndex="2";
   }
   
-}
-function changeBrushSize() {
-  brushSize = $("#brush_size").val();
+});
+
+//change size
+$("#brushSize").on("change", () => {
+  brushSize = $("#brushSize").val();
+  layerDarkCtx.lineWidth = brushSize;
+  layerLightCtx.lineWidth = brushSize;
   console.log("change brush size to", brushSize);
-}
+});
 function changeEraserSize() {
   //Yes i have to write this twice for clarity
   eraserSize = $("#eraser_size").val();
-  console.log(eraserSize);
+  layerDarkCtx.lineWidth = eraserSize;
+  layerLightCtx.lineWidth = eraserSize;
+  console.log("change eraser size to", eraserSize);
 }
 function nameFile() {
   filename = $("#filename").val();
@@ -227,6 +250,7 @@ $(".dark").css("background-color",COL_DARK);
 $(".light").css("background-color",COL_LIGHT);
 
 $(":checkbox").prop('checked', false);
-$("#brush_size").val(brushSize.toString());
-$("#eraser_size").val(eraserSize.toString());
+$("#brushSize").val(brushSize.toString());
+$("#eraserSettings").hide();
+$("#eraserSize").val(eraserSize.toString());
 $("#filename").val(filename);
