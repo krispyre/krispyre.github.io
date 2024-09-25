@@ -8,6 +8,7 @@ const cMask = document.getElementById("circle_mask").getContext("2d");
 const LENGTH = 512;
 let focusDark = true; // draw on dark mode (white ink)
 let brushSize = 4; 
+let eraserSize = 16;
 //const brushDark = new PxBrush(l0); // brush FOR dark mode, so it's white
 cMask.imageSmoothingEnabled= false;
 
@@ -36,11 +37,19 @@ let lastY = 0;
 function draw(e,layerCtx) {
   if (!isDrawing) { return; }
   if ($("#isEraser").is(":checked")) {
+    //Todo add eraser size, also a better way to change brush size 
+    //Eraser settings
+    layerDarkCtx.lineWidth = eraserSize;
+    layerLightCtx.lineWidth = eraserSize;
+    //TODO doesnt wokr
     layerCtx.strokeStyle = "rgba(0,0,0,1)" 
-    layerDarkCtx.globalCompositeOperation = 'destination-out'//Uh idk it kinda worked lol
+    layerCtx.globalCompositeOperation = 'destination-out'//Uh idk it kinda worked lol
     layerLightCtx.globalCompositeOperation = 'destination-out'
   }
   else {
+    //Brush settings
+    layerDarkCtx.lineWidth = brushSize;
+    layerLightCtx.lineWidth = brushSize;
     layerDarkCtx.strokeStyle = "#FFFFFF";
     layerLightCtx.strokeStyle = "#2F3136";
     layerDarkCtx.globalCompositeOperation = 'source-over';
@@ -162,8 +171,11 @@ function switchMode() {
 function changeBrushSize() {
   brushSize = $("#brush_size").val();
   console.log("change brush size to", brushSize);
-  layerDarkCtx.lineWidth = brushSize;
-  layerLightCtx.lineWidth = brushSize;
+}
+function changeEraserSize() {
+  //Yes i have to write this twice for clarity
+  brushSize = $("#eraser_size").val();
+  console.log("change eraser size to", eraserSize);
 }
 function saveImage() {
 
@@ -171,4 +183,5 @@ function saveImage() {
 }
 ////////////////////defaults unchecked boxes, TODO implement cookies?///////////////
 $(":checkbox").prop('checked', false);
-$("#brush_size").val("4");
+$("#brush_size").val(brushSize.toString());
+$("#eraser_size").val(eraserSize.toString());
