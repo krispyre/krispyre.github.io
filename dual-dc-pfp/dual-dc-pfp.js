@@ -209,16 +209,21 @@ function saveImage() {
   // use UI layer as a placeholder :p
   //layerUiCtx.globalCompositeOperation = "destination-atop";
   // todo: save image with both layers
-  let img = createImageBitmap(layerDarkCtx);
-  console.log(img)
-  layerUiCtx.drawImage(img,0,0);
+  let darkBitmap = createImageBitmap(layerDarkCtx);
+  let lightBitmap = createImageBitmap(layerLightCtx);
+
+  //idk how to use drawimage anymoer
+  /*layerUiCtx.drawImage(darkBitmap,0,0);
+  layerUiCtx.drawImage(lightBitmap,0,0);*/
+
+  layerUiCtx.putImageData(layerDarkCtx.getImageData(0,0,LENGTH,LENGTH),0,0);
 
   let canvasUrl = layerUi.toDataURL("image/png");
   const urlA = document.createElement('a');
   urlA.href = canvasUrl;
   urlA.download = filename;
-  urlA.click();
-  //window.open(urlA, '_blank').focus();
+  //urlA.click();
+  window.open(urlA, '_blank').focus();
   urlA.remove();
   layerUiCtx.clearRect(0,0,LENGTH,LENGTH);
 }
