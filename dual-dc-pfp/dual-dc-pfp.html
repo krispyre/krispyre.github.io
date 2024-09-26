@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="dual-dc-pfp.css">
     </head>
 
-    <div class="canvas_container">
+    <section class="canvas_container">
         <div id="background" class="layer dark" width="" height=""></div>
         <canvas id="layer0" class="layer" width="" height="">
             Can't load canvas! Check if js is disabled.
@@ -17,9 +17,9 @@
         </canvas>
         <canvas id="ui" class="layer" width="" height=""></canvas>
         <canvas id="circle_mask" class="layer" width="" height=""></canvas>
-    </div>
+    </section>
 
-    <div class="tools">
+    <section class="tools">
         <div>
             <label for="isEraser">eraser?</label>
             <input type="checkbox" name="isEraser" id="isEraser">
@@ -51,7 +51,7 @@
             <input type="text" placeholder="file name=>" id="filename" onchange="nameFile()">
             <button onclick="saveImage()">save image</button>
         </div>
-    </div>
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://requirejs.org/docs/release/2.3.7/minified/require.js"></script>
