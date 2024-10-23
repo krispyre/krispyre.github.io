@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="120"
+   height="54.720001"
+   viewBox="0 0 120 54.720001"
+   sodipodi:docname="HOWLER_logo.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   inkscape:export-filename="HOWLER_logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="14.747807"
+     inkscape:cx="60.008923"
+     inkscape:cy="27.360001"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1">
+    <rect
+       x="39.603869"
+       y="27.360001"
+       width="110.02711"
+       height="40.686452"
+       id="rect3" />
+    <rect
+       x="38.74083"
+       y="28.67205"
+       width="75.563798"
+       height="17.31898"
+       id="rect2" />
+  </defs>
+  <g
+     id="g1">
+    <path
+       style="fill:#f4d58d;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       d="m 13.71272,3.8357258 c 0,0 -3.9316192,3.0685806 -4.7946575,8.5344902 C 8.0550242,17.836125 9.5893145,39.699762 8.3427036,42.672449 7.0960927,45.645137 6.616627,45.74103 6.616627,45.74103 h 12.657895 c 0,0 -0.249084,-4 2.91539,-4 3.164473,0 3.08461,4 3.08461,4 h 12.169517 l -1.406465,-3.068581 c -0.961488,-2.097743 0.752118,-12.97907 -9.571066,-13.808612 -5.370016,-0.431519 -7.671452,-2.013756 -7.671452,-10.740033 -0.745874,-2.352446 3.639121,1.478117 3.639121,1.478117 0,0 -4.693945,-6.368667 -4.693945,-8.957782 0,-2.5891148 0.05135,-5.1665959 0.287679,-6.4248406 -1.526648,0.7759561 -1.821844,3.64254 -3.35626,3.35626 C 13.130007,7.2879299 13.233254,3.9316189 13.71272,3.8357258 Z"
+       id="path1" />
+    <text
+       xml:space="preserve"
+       id="text3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Franklin Gothic Demi';-inkscape-font-specification:'Franklin Gothic Demi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#f4d58d;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       transform="translate(-1.7698817,-3.74321)"><tspan
+         x="39.603516"
+         y="49.238146"
+         id="tspan2">OWLER</tspan></text>
+  </g>
+</svg>
