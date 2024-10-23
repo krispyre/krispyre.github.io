@@ -1,0 +1,205 @@
+/* variables for palette*/
+:root {
+    --bg: #2d1c35;
+    --popup: #8c3061cc;
+    --text: #D95F59;
+    --special: #f4d58d;
+    /*https://colorhunt.co/palette/5222588c3061c63c51d95f59*/
+    
+}
+* {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+/*anim lmao******/
+@keyframes float {
+    from {
+        box-shadow: 0px 0px 0px var(--text);
+        transform: 0;
+    }
+    to {
+        box-shadow: 0px 0px 10px var(--text);
+        transform: scale(1.05,1.05);
+    }
+}
+@keyframes bgMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 450px 193px;
+    }
+}
+/*navbar*********/
+header {
+    background: url("img/banner.png") fixed 80%;
+    animation: bgMove 30s linear infinite;
+
+    padding:1em;
+    display: flex;
+    justify-content: space-between;
+
+}
+nav {
+    padding: .5em;
+    margin:0;
+}
+#logo {
+    width: 20%;
+    border-radius: 5%;
+    object-fit: contain;
+}
+#logo:hover {
+    animation: float 1s ease-out;
+    animation-fill-mode: forwards;
+}
+a {
+    color: var(--text);
+    padding:1em;
+}
+#taskSwitch {
+    background-color: var(--bg);
+    color:var(--special);
+    float: right;
+}
+
+/*task buttons*************/
+#taskButtons button {
+    background-color: #0c050fc9;
+    color:var(--text);
+    margin:.2em;
+}
+
+/*general styles***********/
+h1 {
+    font-weight: 700;
+    color: var(--special);
+}
+h2 {
+    font-weight: 600;
+    color:var(--special); 
+}
+
+body {
+    color: var(--text);
+    background: url("img/banner.png") fixed;
+    animation: bgMove 30s linear infinite;
+}
+main {
+    padding: 1em;
+    background-color:var(--bg);
+}
+/*toast%spotlight***********/
+.popup {
+    background-color: var(--popup);
+    color: var(--special);
+}
+/*spotlight******/
+#spotlights {
+    position: fixed;
+    bottom:1em;
+    left:1em;
+    width:30%;
+    max-height: 200px;
+    min-width: 100px;
+
+    overflow:scroll;
+    text-overflow:ellipsis;
+}
+/*toast**********/
+#toast {
+    position: fixed;
+    padding: 1em;
+    right:1em;
+    bottom:1em;
+    z-index: 99;
+}
+#toastClose {
+    float:right;
+}
+#toastCloseIcon {
+    color: var(--special);
+}
+/*comments*******/
+h5 {
+    text-overflow: ellipsis;
+}
+.cmHeader i {
+    margin-right: 1em;
+}
+i.red, h5.red, input[type=text].red {
+    color:rgb(255, 31, 68);
+}
+.cmBody.red, textarea.red {
+    color: rgba(255,31,68,0.7);
+}
+/**/
+i.green, h5.green, input[type=text].green {
+    color:rgb(12, 161, 72);
+}
+.cmBody.green, textarea.green {
+    color: rgba(12 ,161,72,0.7);
+}
+/**/
+i.yellow, h5.yellow, input[type=text].yellow {
+    color:rgb(223, 220, 35);
+}
+.cmBody.yellow, textarea.yellow {
+    color: rgba(223,220,35,0.7);
+}
+/**/
+i.blue, h5.blue, input[type=text].blue {
+    color:rgb(46, 119, 255);
+}
+.cmBody.blue, textarea.blue {
+    color: rgba(46,119,255,0.7);
+}
+/*comment form***********/
+#userColor {
+    all:unset;
+    cursor:pointer;
+}
+form div.formBox {
+    border: 1px solid var(--text);
+    border-radius: 0.2em 0.2em 0 0;
+    margin-bottom:1em;
+    overflow: hidden;
+}
+form div.userColor {
+    border-right: 1px solid var(--text);
+    padding: 0.5em;
+    text-align: center;
+}
+form .userComment {
+    border-top: 1px solid var(--text);
+    padding:1em;
+
+}
+form input[type=text] {
+    all: unset;
+    font-weight: 600;
+    padding:.5em;
+
+}
+form textarea {
+    all: unset;
+    resize: none;
+    padding: .5em;
+}
+#submitBtn {
+    background-color: var(--popup);
+    color: var(--special);
+}
+.invalid {
+    background-color: rgba(255, 118, 143, 0.7);
+    color: var(--bg);
+}
+
+/*footer *****************/
+footer {
+    height:400px;
+    padding:2em;
+    text-align: center;
+}
