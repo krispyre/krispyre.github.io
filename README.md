@@ -1,4 +1,4 @@
-# [My website.](https://kr15w.github.io)
+My website.
 
 ## binary playground:
 ### new features
