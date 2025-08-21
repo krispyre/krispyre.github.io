@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Please wait...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --grad-stop: 50%;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive,
+          system-ui;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(
+            1200px 800px at 50% 20%,
+            rgba(0, 0, 0, 0.08),
+            transparent
+          ),
+          linear-gradient(180deg, #0b1020, #4e3d7e var(--grad-stop));
+        color: #e7ecf3;
+      }
+      .wrap {
+        text-align: center;
+        padding: 24px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .sub {
+        opacity: 0.8;
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+      }
+      #countdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(90px, 1fr));
+        gap: 14px;
+      }
+      .unit {
+        padding: 18px 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+      }
+      .value {
+        font-size: clamp(28px, 6vw, 56px);
+        font-weight: 800;
+        line-height: 1;
+      }
+      .label {
+        margin-top: 6px;
+        font-size: 0.85rem;
+        opacity: 0.85;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+      }
+      .done {
+        margin-top: 20px;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      footer {
+        margin-top: 18px;
+        opacity: 0.7;
+        font-size: 0.85rem;
+      }
+      @media (max-width: 520px) {
+        #countdown {
+          grid-template-columns: repeat(2, minmax(110px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Invalid ID card. Please wait for</h1>
+      <section id="countdown" aria-live="polite">
+        <div class="unit">
+          <div id="dd" class="value">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="unit">
+          <div id="hh" class="value">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="unit">
+          <div id="mm" class="value">00</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="unit">
+          <div id="ss" class="value">00</div>
+          <div class="label">Seconds</div>
+        </div>
+      </section>
+      <div id="done" class="done" hidden>
+        <a href="verified.html">Proceed</a>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        const target = new Date("2025-09-01T00:00:00+08:00");
+        const start = Date.now();
+        const totalMs = Math.max(1, target.getTime() - start);
+        const el = {
+          d: document.getElementById("dd"),
+          h: document.getElementById("hh"),
+          m: document.getElementById("mm"),
+          s: document.getElementById("ss"),
+          done: document.getElementById("done"),
+        };
+
+        function pad(n) {
+          return String(n).padStart(2, "0");
+        }
+
+        function render(msLeft) {
+          const totalSeconds = Math.max(0, Math.floor(msLeft / 1000));
+          const days = Math.floor(totalSeconds / 86400);
+          const hours = Math.floor((totalSeconds % 86400) / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+
+          el.d.textContent = days.toString();
+          el.h.textContent = pad(hours);
+          el.m.textContent = pad(minutes);
+          el.s.textContent = pad(seconds);
+        }
+
+        let rafId = 0;
+        function tick() {
+          const now = Date.now();
+          const msLeft = target.getTime() - now;
+          render(msLeft);
+          const ratio = Math.max(0, Math.min(1, msLeft / totalMs));
+          const stop = Math.round(35 + 15 * ratio);
+          document.documentElement.style.setProperty("--grad-stop", stop + "%");
+
+          if (msLeft <= 0) {
+            cancelAnimationFrame(rafId);
+            el.done.hidden = false;
+            return;
+          }
+          // Align updates close to second boundaries to reduce drift
+          const next = 1000 - (now % 1000) + 10; // fk react, just tick it
+          setTimeout(() => {
+            rafId = requestAnimationFrame(tick);
+          }, next);
+        }
+
+        tick();
+      })();
+    </script>
+  </body>
+</html>
