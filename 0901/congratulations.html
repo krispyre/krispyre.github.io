@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations!</title>
+    <style>
+        body {
+            background-color: yellow;
+            color: #0000FF;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .prize-message {
+            font-size: 2em;
+            margin-top: 50px;
+        }
+        .claim-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #0000FF;
+            color: yellow;
+            text-decoration: none;
+            font-size: 1.5em;
+            border-radius: 5px;
+            font-weight: bold;
+            animation: blink 1s infinite, random-shake 0.2s infinite;
+        }
+        @keyframes blink {
+            0%, 50% {
+                background-color: #0000FF;
+                color: yellow;
+            }
+            50%, 51% {
+                background-color: red;
+                color: #0000FF;
+            }
+        }
+        @keyframes random-shake {
+            0% {
+                transform: translate(0, 0);
+            }
+            20% {
+                transform: translate(-5px, 2px);
+            }
+            40% {
+                transform: translate(4px, -3px);
+            }
+            60% {
+                transform: translate(-5px, 9px);
+            }
+            80% {
+                transform: translate(3px, -2px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        .claim-button:hover {
+            background-color: yellow;
+            color: #0000FF;
+            border: 2px solid #0000FF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Congratulations!</h1>
+    <p class="prize-message">You have won: undefined</p>
+    <a href="test.png" class="claim-button" download="test.png">Click here to claim your prize!!!!!</a>
+</body>
+</html>
