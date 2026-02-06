@@ -42,6 +42,7 @@ layerLightCtx.lineWidth = brushSize;
 layerLightCtx.globalCompositeOperation = 'source-over';
 
 let isDrawing = false;
+let isMouseDown = false;
 let lastX = 0;
 let lastY = 0;
 
@@ -78,29 +79,37 @@ layerLight.addEventListener("click",(e)=>{
   ditherClear();
 });
 $(document).on("mousedown", ".layerDraw",(e) => {
+  isMouseDown = true;
   isDrawing=true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
   //console.log(lastX, lastY);
 })
+$(document).on("mouseup",".layerDraw",() => {
+  isMouseDown = false;
+  isDrawing=false;
+})
+
 layerDark.addEventListener("mousemove", (e)=> {drawMouse(e,layerDarkCtx);});
 layerLight.addEventListener("mousemove", (e)=> {drawMouse(e,layerLightCtx)});
-$(document).on("mouseup",".layerDraw",() => {
-  isDrawing=false;
+
+layerDark.addEventListener("mouseenter",(e)=>{
+  if (isMouseDown){
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+  
 })
-/*
 layerDark.addEventListener("mouseleave",() => {
   isDrawing=false;
+  console.log("leave")
   ditherClear();
 })
-*/
 
-
-/*
 layerLight.addEventListener("mouseleave",() => {
   isDrawing=false;
+  console.log("leave")
   ditherClear();
 })
-*/
 //dither///////////////////////////////////////////////////////////////////////
 function ditherClear() {
   let layerDarkData = layerDarkCtx.getImageData(0,0,LENGTH,LENGTH);
