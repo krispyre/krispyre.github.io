@@ -42,7 +42,6 @@ layerLightCtx.lineWidth = brushSize;
 layerLightCtx.globalCompositeOperation = 'source-over';
 
 let isDrawing = false;
-let isMouseDown = false;
 let lastX = 0;
 let lastY = 0;
 
@@ -79,36 +78,39 @@ layerLight.addEventListener("click",(e)=>{
   ditherClear();
 });
 $(document).on("mousedown", ".layerDraw",(e) => {
-  isMouseDown = true;
   isDrawing=true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
   //console.log(lastX, lastY);
 })
 $(document).on("mouseup",".layerDraw",() => {
-  isMouseDown = false;
   isDrawing=false;
 })
 
-layerDark.addEventListener("mousemove", (e)=> {drawMouse(e,layerDarkCtx);});
-layerLight.addEventListener("mousemove", (e)=> {drawMouse(e,layerLightCtx)});
+layerDark.addEventListener("mousemove", (e)=> {
+  drawMouse(e,layerDarkCtx);
+});
+layerLight.addEventListener("mousemove", (e)=> {
+  console.log(e.buttons)
+  drawMouse(e,layerLightCtx)
+});
 
 layerDark.addEventListener("mouseenter",(e)=>{
-  if (isMouseDown){
+  if (e.buttons==1){
     isDrawing = true;
     [lastX, lastY] = [e.offsetX, e.offsetY];
+  } else {
+    isDrawing=false;
   }
   
 })
-layerDark.addEventListener("mouseleave",() => {
+layerDark.addEventListener("mouseleave",(e) => {
+  //todo set the mouse coords to snap to wall if left too fast
   isDrawing=false;
-  console.log("leave")
-  ditherClear();
+  //console.log(lastX-e.offsetX, lastY-e.offsetY)
 })
 
 layerLight.addEventListener("mouseleave",() => {
   isDrawing=false;
-  console.log("leave")
-  ditherClear();
 })
 //dither///////////////////////////////////////////////////////////////////////
 function ditherClear() {
