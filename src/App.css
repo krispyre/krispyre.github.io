@@ -1,6 +1,44 @@
+:root {
+  --bg-dark: hsl(266, 12%, 11%);
+  --accent-dark: hsl(152, 100%, 59%);
+}
+
 #root {
   max-height: 100vh;
   /* max-width: 100vw; */
   padding: 1rem;
-  /* text-align: center; */
+  align-items: center;
+  margin: auto;
+}
+h1 {
+  margin: 1rem 0;
+}
+#card {
+  display: flex;
+  flex-direction: row;
+  width: 50vh;
+  height: 30vh;
+  padding: 2rem;
+  border: 2px solid var(--accent-dark);
+  background-color: var(--bg-dark);
+}
+
+#text {
+  flex: 80%;
+}
+#exp {
+  flex-grow: 1;
+}
+
+#contacts {
+}
+#contacts ul {
+  margin: 0 0;
+  display: flex; /* Lays items out in a row */
+  list-style: none; /* Removes bullet points */
+  padding: 0; /* Removes default browser padding */
+  gap: 20px; /* Adds space between items */
+}
+#contacts a {
+  color: rgb(146, 94, 241);
 }
